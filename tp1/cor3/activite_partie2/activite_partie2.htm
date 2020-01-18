@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0121)https://static.oc-static.com/prod/courses/files/simplifiez-vos-developpements-javascript-avec-jquery/activite_partie2.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <style>
+      body {
+        margin: 0;
+      }
+      #gauche {
+        float: left;
+        width: 70%;
+        height: 1000px;
+        background-color: #EFECCA;
+      }
+      #droite {
+        background-color: #CEFFF8;
+        height: 1000px;
+        padding : 10px;
+        padding-left: 71%;
+      }
+      .information{
+        margin-left:10px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gauche">
+    </div>
+    <div id="droite">
+      Utilisez ces boutons pour créer votre formulaire<br><br>
+      <button id="label">Label</button>
+      <button id="Zone">Zone de texte</button>
+      <button id="bouton">Bouton</button>
+      <br />
+
+    <div id="enregistrement">
+      <hr />
+      <br /> 
+            <label id="titre"></label>  <input type="text" class="saisie" />   <input type="submit" value="ok" class="ajout" >
+    </div>
+          <script src="jquery.js"></script> 
+          <script>
+                $('#enregistrement').hide();
+                
+                $('#label').click(function(){
+                  $('#titre').html('Texte du label');
+                  $('#enregistrement:hidden').show();
+                  $('.saisie').attr('id','okLabel');
+                });
+
+                $('#Zone').click(function(){
+                  $('#titre').html('id de la zone de texte');
+                  $('#enregistrement:hidden').show();
+                  $('.saisie').attr('id','okZone');
+                });
+
+                $('#bouton').click(function(){
+                  $('#titre').html('Texte du bouton');
+                  $('#enregistrement:hidden').show();
+                  $('.saisie').attr('id','okBouton');
+                });
+
+                $('.ajout').click(function(){
+                    var identifiant = $('.saisie').attr('id');
+                    var saisie = $('.saisie').val();
+                    if (identifiant == "okLabel") {
+                      $('#gauche').append('<span class="information">' + saisie + '</span>&nbsp;');
+                      $('#enregistrement').hide();
+                      $('.saisie').val('');
+                    }
+                    else if(identifiant == "okZone"){
+                      $('#gauche').append('<input type="text" class="information" id="' + saisie + '">');
+                      $('#gauche').append('<br>');
+                      $('#enregistrement').hide();
+                      $('.saisie').val('');
+                    }
+                    else if(identifiant == "okBouton"){
+                      $('#gauche').append('<button class="information">' + saisie + '</button>');
+                      $('#gauche').append('<br>');
+                      $('#enregistrement').hide();
+                      $('.saisie').val('');
+                    }
+                });
+          </script>
+
+</body></html>

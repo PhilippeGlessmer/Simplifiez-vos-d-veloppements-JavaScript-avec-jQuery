@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+}
+#gauche {
+	float: left;
+	width: 70%;
+	height: 1000px;
+	background-color: #efecca;
+}
+#droite {
+	background-color: #cefff8;
+	height: 1000px;
+	padding: 10px;
+	padding-left: 71%;
+}
+span {
+	font-weight: bold;
+}
+span,
+button,
+input {
+	margin: 10px;
+}

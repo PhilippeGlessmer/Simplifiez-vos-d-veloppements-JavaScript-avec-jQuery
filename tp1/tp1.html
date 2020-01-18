@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                margin: 0;
+            }
+            #gauche {
+                float: left;
+                width: 70%;
+                height: 1000px;
+                background-color: #EFECCA;
+            }
+            #droite {
+                background-color: #CEFFF8;
+                height: 1000px;
+                padding : 10px;
+                padding-left: 71%;
+            }
+            input {
+                margin: 10px 10px 10px 10px;
+                outline: none;
+            }
+            span {
+                margin: 10px 10px;
+            }
+            button {
+                border-radius: 6px;
+                margin: 10px 0 0 10px;
+                background-color: white;
+                border: 1px solid grey;
+                outline: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="gauche">
+
+        </div>
+        <div id="droite">
+            Utilisez ces boutons pour créer votre formulaire<br><br>
+            <button>Label</button>
+            <button>Zone de texte</button>
+            <button>Bouton</button>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            // TEXTE
+            $(function() {     
+                $( 'button:first').click(function() { // Quand on clic sur le bouton "label" un texte, un champ et un bouton s'affiche en-bas
+                    $('button:last').after('<br /><br /><hr><div id="conteneur"><label for="label">Texte du label <input type="text" name="label"  id="label" /><button id="bLabel"> Ok </button></div>');
+                    $('#gauche:last').append('<span></span>');
+
+                    $("#bLabel").click(function() { // Lorsqu'on clic sur le bouton "ok" le texte apparaît à gauche dans une <span></span>
+                        $('span:last').append($('#label').val());
+                        $('hr').remove();
+                        $('#conteneur').remove();
+                    });
+                });
+                // CHAMP TEXT
+                $( 'button:eq(1)' ).click(function() { // Quand on clic sur le bouton "zone de texte" à droite un texte, un champ et un bouton s'affiche en-bas
+                    $('button:last').after('<br /><br /><hr><div id="conteneur"><label for="texte">id de la zone de texte <input type="text" name="texte" id="texte" /><button id="bTexte"> Ok </button></div>');
+
+                    $('#bTexte').click(function() { // Lorsqu'on clic sur le bouton "ok", le contenu du champ de droite apparaît à gauche dans l'id d'un nouveau champ <input type="text">
+                        $('span:last').after('<input type="text" class="tousBouton" id="' + ($("#texte").val()) + '"><br />');
+                        $('hr').remove();
+                        $('#conteneur').remove();
+                    });
+                });
+                // BOUTON
+                $( 'button:last' ).click(function() { // Quand on clic sur la bouton "bouton" à droite un texte, un champ et un bouton s'affiche en-bas
+                    $('button:last').after('<br /><br /><hr><div id="conteneur"><label for="bouton">Texte du bouton <input type="text" name="bouton" id="bouton" /><button id="bBouton"> Ok </button></div>');
+
+                    $('#bBouton').click(function() { // Lorsqu'on clic sur le bouton "ok", le contenu du champ de droite apparaît dans le bouton de gauche
+                        $('.tousBouton:last').after('<br /><button>' + ($("#bouton").val()) + '</button>');
+                        $('hr').remove();
+                        $('#conteneur').remove();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
+
